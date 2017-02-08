@@ -1,0 +1,25 @@
+## MySQL
+require("RMySQL")
+
+mysql = dbConnect(MySQL(), user = 'user-name', password = 'password', dbname = 'database-name', host = 'host-name')
+
+## PostGresSQL
+require("RPostgreSQL")
+drv <- dbDriver("PostgreSQL")
+
+#postgres
+postgres <- dbConnect(drv, dbname = "database-name",
+                 host = "host-name", port = 5432,
+                 user = "user-name", password = 'password')
+
+## redshift
+redshift <- dbConnect(drv, dbname = "database-name",
+                      host = "host-name", port = 5439,
+                      user = "user-name", password = 'password')
+
+
+# check for the cartable
+dbExistsTable(postgres, "schema-name.table-name")
+# TRUE
+
+check <- dbGetQuery(postgres, "select * from schema-name.table-name limit 10")
